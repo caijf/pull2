@@ -1,0 +1,24 @@
+{
+  "name": "pull2",
+  "version": "0.0.0",
+  "description": "下拉刷新、滚动底部加载组件。支持原生 js amd cjs es6 等应用场景，自定义文本和 dom 。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caijf/pull2.git"
+  },
+  "keywords": [
+    "PullToRefresh",
+    "ScrollToLower",
+    "pull"
+  ],
+  "author": "caijf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caijf/pull2/issues"
+  },
+  "homepage": "https://github.com/caijf/pull2#readme"
+}
