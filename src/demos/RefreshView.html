@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下拉刷新</title>
+</head>
+
+<body>
+  <div id="wrapper"></div>
+  <div class="btns">
+    <button data-state="default">下拉刷新</button>
+    <button data-state="drop">释放刷新</button>
+    <button data-state="loading">刷新中</button>
+    <button data-state="failed">刷新失败</button>
+    <button data-state="success">刷新成功</button>
+  </div>
+
+  <script type="module">
+    import RefreshView from '../RefreshView.ts';
+
+    const refreshView = new RefreshView();
+    refreshView.setHeight('40px');
+
+    document.querySelector('.btns').addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.nodeName === 'BUTTON' && target.dataset && target.dataset.state) {
+        refreshView.setState(target.dataset.state);
+      }
+    });
+  </script>
+</body>
+
+</html>

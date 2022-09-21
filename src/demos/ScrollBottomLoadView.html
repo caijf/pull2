@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滚动加载</title>
+</head>
+
+<body>
+  <div id="wrapper"></div>
+  <div class="btns">
+    <button data-state="default">上拉加载更多</button>
+    <button data-state="loading">正在加载</button>
+    <button data-state="failed">加载失败，点击重试</button>
+    <button data-state="done">已全部加载</button>
+  </div>
+
+  <script type="module">
+    import ScrollBottonLoadView from '../ScrollBottomLoadView.ts';
+
+    const wrapper = document.querySelector('#wrapper');
+    const scrollBottomLoadView = new ScrollBottonLoadView({
+      scrollView: wrapper
+    });
+
+    document.querySelector('.btns').addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.nodeName === 'BUTTON' && target.dataset && target.dataset.state) {
+        scrollBottomLoadView.setState(target.dataset.state);
+      }
+    });
+  </script>
+</body>
+
+</html>
