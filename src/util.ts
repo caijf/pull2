@@ -4,7 +4,7 @@ export const isWindow = (obj: any) => {
 };
 
 // 是否支持Touch事件
-export const isSupportTouch = typeof window === 'object' && 'ontouchstart' in window;
+export const isSupportTouch = typeof window === 'object' && window && 'ontouchstart' in window;
 
 // 事件
 export const Events = {

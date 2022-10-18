@@ -1,6 +1,6 @@
 dist
 node_modules
-dist-examples
+examples-dist
 bak
 package.json
 package-lock.json
