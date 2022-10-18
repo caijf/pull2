@@ -5,29 +5,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>下拉刷新</title>
+  <title>滚动加载</title>
 </head>
 
 <body>
-  <div id="wrapper"></div>
   <div class="btns">
     <button>default</button>
-    <button>drop</button>
     <button>loading</button>
     <button>failed</button>
-    <button>success</button>
+    <button>done</button>
   </div>
 
   <script type="module">
-    import RefreshView from '../RefreshView.ts';
+    import LoadMoreView from '../LoadMoreView.ts';
 
-    const refreshView = new RefreshView();
-    refreshView.setHeight('40px');
+    const loadMoreView = new LoadMoreView();
 
     document.querySelector('.btns').addEventListener('click', (e) => {
       const target = e.target;
       if (target.nodeName === 'BUTTON') {
-        refreshView.setState(target.innerText);
+        loadMoreView.setState(target.innerText);
       }
     });
   </script>
