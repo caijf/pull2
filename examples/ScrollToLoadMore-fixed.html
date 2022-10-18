@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet">
-  <title>PullToRefresh - fixed</title>
+  <title>ScrollToLoadMore - fixed</title>
   <style>
     .main {
       height: 300px;
@@ -31,11 +31,7 @@
     <div>header some thing</div>
   </div>
   <div class="main" id="main">
-    <ul class="list-group" id="wrapper">
-      <li class="list-group-item">1</li>
-      <li class="list-group-item">2</li>
-      <li class="list-group-item">3</li>
-    </ul>
+    <ul class="list-group" id="wrapper"></ul>
   </div>
   <div style="background: blue; color: white;">
     <div>footer some thing</div>
@@ -59,15 +55,17 @@
     <div>footer some thing</div>
   </div>
   <script type="module">
-    import PullToRefresh from '../PullToRefresh.ts';
+    import ScrollToLoadMore from '../src/ScrollToLoadMore.ts';
 
-    const pullToRefreshInstance = new PullToRefresh({
+    const scrollToloadMoreInstance = new ScrollToLoadMore({
       scrollView: document.getElementById('main'),
-      onRefresh: refresh,
+      onScrollLower: load,
+      isNoMore: (res) => {
+        return res.data.length < 10;
+      }
     });
 
-    // 首次执行，手动触发下拉刷新
-    pullToRefreshInstance.triggerRefresh();
+    scrollToloadMoreInstance.triggerLoad();
 
     // 延迟执行
     async function waitTime(time = 1000) {
@@ -76,19 +74,44 @@
       });
     }
 
-    // 处理下拉刷新成功
-    async function refresh() {
+    let current = 1;
+    const pageSize = 10;
+    const total = Math.ceil(Math.random() * 50) + 20;
+
+    function getData() {
+      const restSize = total - pageSize * current;
+
+      if (restSize <= 0) { return [] };
+
+      const size = restSize > pageSize ? pageSize : restSize;
+      const data = [];
+
+      for (let i = 0; i < size; i++) {
+        data.push(`${i + pageSize * (current - 1) + 1} ${Math.random().toString(16).substring(2)}`);
+      }
+      return data;
+    }
+
+    // 处理滚动底部加载
+    async function load() {
       await waitTime();
 
-      if (Math.random() > 0.2) {
-        const randomLen = Math.round(Math.random() * 30) + 10;
-        let html = '';
-        for (let i = 0; i < randomLen; i++) {
-          html += `<li class="list-group-item">${i + 1} ${Math.random().toString(16).substring(2)}</li>`;
-        }
-        document.getElementById('wrapper').innerHTML = html;
-        return Promise.resolve();
+      const isSuccess = Math.random() > 0.2; // 标识请求是否成功
+      if (isSuccess) {
+        const data = getData();
+        const fragment = document.createDocumentFragment();
+
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.setAttribute('class', 'list-group-item');
+          li.innerHTML = item;
+          fragment.append(li);
+        });
+        current += 1;
+        document.getElementById('wrapper').append(fragment);
+        return Promise.resolve({ data });
       }
+
       return Promise.reject();
     }
   </script>

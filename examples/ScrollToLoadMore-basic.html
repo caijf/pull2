@@ -6,63 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet">
-  <title>ScrollToLoadMore - fixed</title>
-  <style>
-    .main {
-      height: 300px;
-      width: 100%;
-      overflow: auto;
-    }
-  </style>
+  <title>ScrollToLoadMore - basic</title>
 </head>
 
 <body>
-  <div style="background: red; color: white;">
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-    <div>header some thing</div>
-  </div>
-  <div class="main" id="main">
-    <ul class="list-group" id="wrapper">
-      <li class="list-group-item">1</li>
-      <li class="list-group-item">2</li>
-      <li class="list-group-item">3</li>
-    </ul>
-  </div>
-  <div style="background: blue; color: white;">
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-    <div>footer some thing</div>
-  </div>
+  <ul class="list-group" id="wrapper"></ul>
   <script type="module">
-    import ScrollToLoadMore from '../ScrollToLoadMore.ts';
+    import ScrollToLoadMore from '../src/ScrollToLoadMore.ts';
 
     const scrollToloadMoreInstance = new ScrollToLoadMore({
-      scrollView: document.getElementById('main'),
       onScrollLower: load,
       isNoMore: (res) => {
         return res.data.length < 10;

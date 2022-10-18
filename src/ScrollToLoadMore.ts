@@ -62,7 +62,11 @@ class ScrollToLoadMore<T = any> {
   // 滚动
   private scroll() {
     if (this.isLock || this.isUnmouted || this.view.state !== LoadMoreState.Default) return;
+    this.checkLoad();
+  }
 
+  // 手动检测是否满足加载下一页条件，一般在页面刷新后调用
+  checkLoad() {
     const { scrollView, threshold } = this.options;
     const height = getClientHeight(scrollView); // 内容高度
     const scrollHeight = getScrollHeight(scrollView); // 滚动容器高度
@@ -94,6 +98,9 @@ class ScrollToLoadMore<T = any> {
   }
 
   triggerLoad() {
+    // 避免手动调用重复触发
+    if (this.view.state === LoadMoreState.Loading) return;
+
     this.internalLock();
     this.view.setState(LoadMoreState.Loading);
     const { onScrollLower, isNoMore, autoCheckOnContentUpdate } = this.options;
@@ -111,6 +118,7 @@ class ScrollToLoadMore<T = any> {
           this.scroll();
         }
       }
+      return res;
     }).catch(() => {
       this.view.setState(LoadMoreState.Failed);
       this.internalUnlock();

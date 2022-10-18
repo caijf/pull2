@@ -6,25 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet">
-  <title>ScrollToLoadMore - basic</title>
+  <title>ScrollToLoadMore - reset</title>
 </head>
 
 <body>
-  <ul class="list-group" id="wrapper">
-    <li class="list-group-item">1</li>
-    <li class="list-group-item">2</li>
-    <li class="list-group-item">3</li>
-  </ul>
+  <button id="reset-btn">重置</button>
+  <ul class="list-group" id="wrapper"></ul>
   <script type="module">
-    import ScrollToLoadMore from '../ScrollToLoadMore.ts';
+    import ScrollToLoadMore from '../src/ScrollToLoadMore.ts';
 
-    new ScrollToLoadMore({
+    const scrollToloadMoreInstance = new ScrollToLoadMore({
       onScrollLower: load,
       isNoMore: (res) => {
         return res.data.length < 10;
-      },
-      // autoCheckOnContentUpdate: false // 加载成功后是否自动判断满足触发加载更多条件
+      }
     });
+
+    scrollToloadMoreInstance.triggerLoad();
 
     // 延迟执行
     async function waitTime(time = 1000) {
@@ -73,6 +71,13 @@
 
       return Promise.reject();
     }
+
+    document.querySelector('#reset-btn').addEventListener('click', () => {
+      current = 1;
+      document.querySelector('#wrapper').innerHTML = '';
+      scrollToloadMoreInstance.reset();
+      scrollToloadMoreInstance.triggerLoad();
+    });
   </script>
 </body>
 

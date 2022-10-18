@@ -5,4 +5,5 @@ package-lock.json
 yarn.lock
 .parcel-cache
 dist
-examples
+bak
+dist-examples

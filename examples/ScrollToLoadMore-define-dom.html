@@ -10,18 +10,20 @@
 </head>
 
 <body>
-  <ul class="list-group" id="wrapper">
-    <li class="list-group-item">1</li>
-    <li class="list-group-item">2</li>
-    <li class="list-group-item">3</li>
-  </ul>
+  <ul class="list-group" id="wrapper"></ul>
   <script type="module">
-    import ScrollToLoadMore from '../ScrollToLoadMore.ts';
+    import ScrollToLoadMore from '../src/ScrollToLoadMore.ts';
 
     const scrollToloadMoreInstance = new ScrollToLoadMore({
       onScrollLower: load,
       isNoMore: (res) => {
         return res.data.length < 10;
+      },
+      dom: {
+        default: '--上拉 或 点击加载--',
+        loading: '--加载中--',
+        failed: '--失败了，点击重试--',
+        done: '--没有更多了--'
       }
     });
 

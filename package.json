@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/demos/index.html",
+    "start": "parcel examples/index.html --dist-dir dist-examples",
     "build": "parcel build"
   },
   "repository": {
@@ -15,7 +15,9 @@
   "keywords": [
     "PullToRefresh",
     "ScrollToLower",
-    "pull"
+    "pull",
+    "pull-to-refresh",
+    "scrollLower"
   ],
   "author": "caijf",
   "license": "MIT",

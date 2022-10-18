@@ -14,11 +14,13 @@ class View {
   el: HTMLElement;
   handler: { [k: string]: ((...args: any[]) => void)[] };
   isUnmounted: boolean;
+  private transitionTimer: any;
 
   constructor(element?: HTMLElement) {
     this.el = element ? element : document.createElement('div');
     this.handler = {};
     this.isUnmounted = false; // 标识卸载
+    this.transitionTimer = null; // 过度样式定时器
   }
 
   on(type: string, listener: EventListener, options?: boolean | AddEventListenerOptions) {
@@ -84,10 +86,12 @@ class View {
   setTransitionHeight(num: number | string) {
     if (this.isUnmounted) return;
 
+    clearTimeout(this.transitionTimer);
+
     this.updateTransition(true);
     reflow(this.el);
     this.setHeight(num);
-    setTimeout(() => {
+    this.transitionTimer = setTimeout(() => {
       this.updateTransition(false);
     }, 300);
   }

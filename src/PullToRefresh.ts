@@ -25,6 +25,7 @@ class PullToRefresh {
   private isUnmouted: boolean;
   private calledLock: boolean;
   private lockTimer: any;
+  private completionStayTimer: any;
   private __timerFixSlideOutScreen: any;
   private view!: RefreshView;
   private handler: { start: any; move: any; end: any; } | null;
@@ -53,6 +54,7 @@ class PullToRefresh {
     this.calledLock = false; // 标识是否调用过lock方法
 
     this.lockTimer = null; // 锁定定时器
+    this.completionStayTimer = null; // 停留定时器
 
     this.__timerFixSlideOutScreen = null; // 定时器，修复滑出屏幕导致下拉刷新显示错误问题
 
@@ -200,10 +202,10 @@ class PullToRefresh {
 
   // 重置
   private resetView() {
-    setTimeout(() => {
+    this.completionStayTimer = setTimeout(() => {
       this.view.setTransitionHeight(0)
 
-      setTimeout(() => {
+      this.completionStayTimer = setTimeout(() => {
         this.view.setState(RefreshViewState.Default);
       }, 300);
     }, this.options.completionStayTime);
@@ -212,7 +214,9 @@ class PullToRefresh {
   // 触发下拉刷新
   // 锁定后也支持外部手动触发
   triggerRefresh() {
-    if (this.isUnmouted) return;
+    // fix: 如果停留时，手动触发刷新，可能产生异常
+    if (this.isUnmouted || this.view.state === RefreshViewState.Loading) return;
+    clearTimeout(this.completionStayTimer);
 
     this.view.setState(RefreshViewState.Loading);
     this.view.setTransitionHeight(this.options.height);
