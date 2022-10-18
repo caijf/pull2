@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel examples/index.html --dist-dir dist-examples",
-    "build": "parcel build"
+    "build": "parcel build",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint-fix:js": "npm run lint:js -- --fix"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,9 @@
   "homepage": "https://github.com/caijf/pull2#readme",
   "devDependencies": {
     "@parcel/transformer-less": "2.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
     "parcel": "^2.7.0",
     "typescript": "^4.8.4"
   }

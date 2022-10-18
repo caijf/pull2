@@ -12,7 +12,7 @@ export enum State {
 }
 
 // 默认dom
-var defaultDom = {
+const defaultDom = {
   [State.Default]: '<%=text%>',
   [State.Loading]: '<%=text%>',
   [State.Failed]: '<%=text%>',
@@ -65,8 +65,8 @@ class LoadMoreView extends View {
     this.render();
   }
 
-  private __getWrapper(wrapper: any) {
-    return isWindow(wrapper) || wrapper === document.documentElement ? document.body : wrapper;
+  private __getWrapper(wrapper: Window | HTMLElement) {
+    return isWindow(wrapper) || wrapper === document.documentElement ? document.body : (wrapper as HTMLElement);
   }
 
   private render() {

@@ -16,7 +16,7 @@ export const Events = {
 
 // 获取滚动条距离顶部长度
 export function getScrollTop(el: HTMLElement | Window) {
-  var top = 0;
+  let top = 0;
 
   if (el === document.body || el === document.documentElement || el === window) {
     top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
@@ -81,11 +81,12 @@ export function getScrollHeight(el: Window | HTMLElement = window) {
     return document.documentElement.scrollHeight;
   }
   return (el as HTMLElement).scrollHeight;
-};
+}
 
 // 节流
 export function throttle(fn: (...args: any[]) => void, wait = 300) {
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const context = this;
   let lastCallTime = Date.now();
   let hasTimer = false;
