@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>下拉刷新</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>下拉刷新</title>
-</head>
+  <body>
+    <div id="wrapper"></div>
+    <div class="btns">
+      <button>default</button>
+      <button>drop</button>
+      <button>loading</button>
+      <button>failed</button>
+      <button>success</button>
+    </div>
 
-<body>
-  <div id="wrapper"></div>
-  <div class="btns">
-    <button>default</button>
-    <button>drop</button>
-    <button>loading</button>
-    <button>failed</button>
-    <button>success</button>
-  </div>
+    <script type="module">
+      import RefreshView from '../src/RefreshView.ts';
 
-  <script type="module">
-    import RefreshView from '../src/RefreshView.ts';
+      const refreshView = new RefreshView();
+      refreshView.setHeight('40px');
 
-    const refreshView = new RefreshView();
-    refreshView.setHeight('40px');
-
-    document.querySelector('.btns').addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.nodeName === 'BUTTON') {
-        refreshView.setState(target.innerText);
-      }
-    });
-  </script>
-</body>
-
+      document.querySelector('.btns').addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.nodeName === 'BUTTON') {
+          refreshView.setState(target.innerText);
+        }
+      });
+    </script>
+  </body>
 </html>

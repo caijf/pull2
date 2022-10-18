@@ -13,11 +13,16 @@ export enum State {
 
 // 默认dom
 const defaultDom = {
-  [State.Default]: '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span><%=text%>',
-  [State.Drop]: '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span><%=text%>',
-  [State.Loading]: '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle pull2-icon-spin"></span></span><%=text%>',
-  [State.Success]: '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-check"></span></span><%=text%>',
-  [State.Failed]: '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-x"></span></span><%=text%>'
+  [State.Default]:
+    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span><%=text%>',
+  [State.Drop]:
+    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span><%=text%>',
+  [State.Loading]:
+    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle pull2-icon-spin"></span></span><%=text%>',
+  [State.Success]:
+    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-check"></span></span><%=text%>',
+  [State.Failed]:
+    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-x"></span></span><%=text%>'
 };
 
 // 默认文本
@@ -36,11 +41,11 @@ export type Options = {
   scrollView?: HTMLElement;
   text?: Partial<typeof defaultText>;
   dom?: Partial<typeof defaultDom>;
-}
+};
 
 class RefreshView extends View {
   state: State;
-  options: { scrollView: HTMLElement; text: typeof defaultText, dom: typeof defaultDom; };
+  options: { scrollView: HTMLElement; text: typeof defaultText; dom: typeof defaultDom };
   tplMarkText: string;
 
   constructor(options?: Options) {

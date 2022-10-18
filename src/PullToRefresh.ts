@@ -1,4 +1,7 @@
-import RefreshView, { Options as RefreshViewOptions, State as RefreshViewState } from './RefreshView';
+import RefreshView, {
+  Options as RefreshViewOptions,
+  State as RefreshViewState
+} from './RefreshView';
 import { Events, getClient, getScrollTop } from './util';
 
 type Options = {
@@ -28,7 +31,7 @@ class PullToRefresh {
   private completionStayTimer: any;
   private __timerFixSlideOutScreen: any;
   private view!: RefreshView;
-  private handler: { start: any; move: any; end: any; } | null;
+  private handler: { start: any; move: any; end: any } | null;
 
   constructor(options: Options) {
     this.options = {
@@ -37,7 +40,7 @@ class PullToRefresh {
       unmovableStayTime: 3000,
       completionStayTime: 500,
       scrollView: document.documentElement,
-      ...options,
+      ...options
     };
 
     // 如没有设置 onRefresh ，不做任何处理
@@ -62,7 +65,7 @@ class PullToRefresh {
       start: this.fnTouchstart.bind(this),
       move: this.fnTouchmove.bind(this),
       end: this.fnTouchend.bind(this)
-    }
+    };
 
     this.init();
   }
@@ -97,7 +100,9 @@ class PullToRefresh {
 
   // 开始触摸
   private fnTouchstart(e: any) {
-    if (this.view.state !== RefreshViewState.Default || this.isLock) { return; }
+    if (this.view.state !== RefreshViewState.Default || this.isLock) {
+      return;
+    }
 
     const scrollTop = getScrollTop(this.options.scrollView);
 
@@ -118,7 +123,9 @@ class PullToRefresh {
 
   // 触摸移动
   private fnTouchmove(e: any) {
-    if (!this.isTouch) { return; }
+    if (!this.isTouch) {
+      return;
+    }
 
     const { clientX, clientY } = getClient(e);
     const diffY = clientY - this.touchesStart.y;
@@ -203,7 +210,7 @@ class PullToRefresh {
   // 重置
   private resetView() {
     this.completionStayTimer = setTimeout(() => {
-      this.view.setTransitionHeight(0)
+      this.view.setTransitionHeight(0);
 
       this.completionStayTimer = setTimeout(() => {
         this.view.setState(RefreshViewState.Default);
@@ -220,13 +227,17 @@ class PullToRefresh {
 
     this.view.setState(RefreshViewState.Loading);
     this.view.setTransitionHeight(this.options.height);
-    return this.options.onRefresh().then(() => {
-      this.view.setState(RefreshViewState.Success);
-    }).catch(() => {
-      this.view.setState(RefreshViewState.Failed);
-    }).finally(() => {
-      this.resetView();
-    });
+    return this.options
+      .onRefresh()
+      .then(() => {
+        this.view.setState(RefreshViewState.Success);
+      })
+      .catch(() => {
+        this.view.setState(RefreshViewState.Failed);
+      })
+      .finally(() => {
+        this.resetView();
+      });
   }
 
   // 内部锁定，锁定后将不再触发下拉刷新
@@ -267,7 +278,7 @@ class PullToRefresh {
     this.options = {
       ...this.options,
       ...options
-    }
+    };
     const { text, dom, scrollView } = this.options;
     this.view.updateOptions({ text, dom, scrollView });
     if (changedScrollView) {

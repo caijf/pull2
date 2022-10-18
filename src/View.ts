@@ -105,7 +105,9 @@ class View {
     }
     const prevClasses = this.el.getAttribute('class');
     const arrPrevClasses = !prevClasses ? [] : prevClasses.split(' ');
-    const arrNextClasses = arrPrevClasses.filter(itemCls => cls.indexOf(itemCls) === -1).concat(cls);
+    const arrNextClasses = arrPrevClasses
+      .filter((itemCls) => cls.indexOf(itemCls) === -1)
+      .concat(cls);
     this.setAttrs({ class: arrNextClasses.join(' ') });
   }
 
@@ -118,7 +120,7 @@ class View {
     }
     const prevClasses = this.el.getAttribute('class');
     const arrPrevClasses = !prevClasses ? [] : prevClasses.split(' ');
-    const arrNextClasses = arrPrevClasses.filter(itemCls => cls.indexOf(itemCls) === -1);
+    const arrNextClasses = arrPrevClasses.filter((itemCls) => cls.indexOf(itemCls) === -1);
     this.setAttrs({ class: arrNextClasses.join(' ') });
   }
 

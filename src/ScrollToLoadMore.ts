@@ -15,7 +15,7 @@ class ScrollToLoadMore<T = any> {
   private isUnmouted: boolean;
   private isLock: boolean;
   private calledLock: boolean;
-  private handler: { click: any; scroll: any; };
+  private handler: { click: any; scroll: any };
 
   constructor(options: Options<T>) {
     this.options = {
@@ -38,8 +38,12 @@ class ScrollToLoadMore<T = any> {
 
     this.handler = {
       click: this.clickView.bind(this),
-      scroll: throttle.call(this, this.scroll, this.options.throttleWaitTime > 0 ? this.options.throttleWaitTime : 0)
-    }
+      scroll: throttle.call(
+        this,
+        this.scroll,
+        this.options.throttleWaitTime > 0 ? this.options.throttleWaitTime : 0
+      )
+    };
 
     this.init();
   }
@@ -105,24 +109,26 @@ class ScrollToLoadMore<T = any> {
     this.view.setState(LoadMoreState.Loading);
     const { onScrollLower, isNoMore, autoCheckOnContentUpdate } = this.options;
 
-    return onScrollLower().then((res) => {
-      this.internalUnlock();
-      if (isNoMore(res)) {
-        this.view.setState(LoadMoreState.Done);
-      } else {
-        this.view.setState(LoadMoreState.Default);
+    return onScrollLower()
+      .then((res) => {
+        this.internalUnlock();
+        if (isNoMore(res)) {
+          this.view.setState(LoadMoreState.Done);
+        } else {
+          this.view.setState(LoadMoreState.Default);
 
-        // 触发更新内容高度，滚动容器高度。
-        // 可以由外部触发。比如外部下拉刷新或者内容增删改，需要重新更新内容高度。
-        if (autoCheckOnContentUpdate) {
-          this.scroll();
+          // 触发更新内容高度，滚动容器高度。
+          // 可以由外部触发。比如外部下拉刷新或者内容增删改，需要重新更新内容高度。
+          if (autoCheckOnContentUpdate) {
+            this.scroll();
+          }
         }
-      }
-      return res;
-    }).catch(() => {
-      this.view.setState(LoadMoreState.Failed);
-      this.internalUnlock();
-    });
+        return res;
+      })
+      .catch(() => {
+        this.view.setState(LoadMoreState.Failed);
+        this.internalUnlock();
+      });
   }
 
   // 重置状态
@@ -138,14 +144,21 @@ class ScrollToLoadMore<T = any> {
       this.unbindEvent();
     }
 
-    if (typeof options?.throttleWaitTime === 'number' && options.throttleWaitTime !== this.options.throttleWaitTime) {
-      this.handler.scroll = throttle.call(this, this.scroll, options.throttleWaitTime > 0 ? options.throttleWaitTime : 0)
+    if (
+      typeof options?.throttleWaitTime === 'number' &&
+      options.throttleWaitTime !== this.options.throttleWaitTime
+    ) {
+      this.handler.scroll = throttle.call(
+        this,
+        this.scroll,
+        options.throttleWaitTime > 0 ? options.throttleWaitTime : 0
+      );
     }
 
     this.options = {
       ...this.options,
       ...options
-    }
+    };
     const { text, dom, scrollView } = this.options;
     this.view.updateOptions({ text, dom, scrollView });
     if (changedScrollView) {

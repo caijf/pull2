@@ -1,82 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>ScrollToLoadMore - trigger</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet">
-  <title>ScrollToLoadMore - trigger</title>
-</head>
+  <body>
+    <ul class="list-group" id="wrapper"></ul>
+    <script type="module">
+      import ScrollToLoadMore from '../src/ScrollToLoadMore.ts';
 
-<body>
-  <ul class="list-group" id="wrapper"></ul>
-  <script type="module">
-    import ScrollToLoadMore from '../src/ScrollToLoadMore.ts';
-
-    const scrollToloadMoreInstance = new ScrollToLoadMore({
-      onScrollLower: load,
-      isNoMore: (res) => {
-        return res.data.length < 10;
-      },
-      dom: {
-        default: '--上拉 或 点击加载--',
-        loading: '--加载中--',
-        failed: '--失败了，点击重试--',
-        done: '--没有更多了--'
-      }
-    });
-
-    scrollToloadMoreInstance.triggerLoad();
-
-    // 延迟执行
-    async function waitTime(time = 1000) {
-      return new Promise(resolve => {
-        setTimeout(resolve, time);
+      const scrollToloadMoreInstance = new ScrollToLoadMore({
+        onScrollLower: load,
+        isNoMore: (res) => {
+          return res.data.length < 10;
+        },
+        dom: {
+          default: '--上拉 或 点击加载--',
+          loading: '--加载中--',
+          failed: '--失败了，点击重试--',
+          done: '--没有更多了--'
+        }
       });
-    }
 
-    let current = 1;
-    const pageSize = 10;
-    const total = Math.ceil(Math.random() * 50) + 20;
+      scrollToloadMoreInstance.triggerLoad();
 
-    function getData() {
-      const restSize = total - pageSize * (current - 1);
-
-      if (restSize <= 0) { return [] };
-
-      const size = restSize > pageSize ? pageSize : restSize;
-      const data = [];
-
-      for (let i = 0; i < size; i++) {
-        data.push(`${i + pageSize * (current - 1) + 1} ${Math.random().toString(16).substring(2)}`);
-      }
-      return data;
-    }
-
-    // 处理滚动底部加载
-    async function load() {
-      await waitTime();
-
-      const isSuccess = Math.random() > 0.2; // 标识请求是否成功
-      if (isSuccess) {
-        const data = getData();
-        const fragment = document.createDocumentFragment();
-
-        data.forEach(item => {
-          const li = document.createElement('li');
-          li.setAttribute('class', 'list-group-item');
-          li.innerHTML = item;
-          fragment.append(li);
+      // 延迟执行
+      async function waitTime(time = 1000) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, time);
         });
-        current += 1;
-        document.getElementById('wrapper').append(fragment);
-        return Promise.resolve({ data });
       }
 
-      return Promise.reject();
-    }
-  </script>
-</body>
+      let current = 1;
+      const pageSize = 10;
+      const total = Math.ceil(Math.random() * 50) + 20;
 
+      function getData() {
+        const restSize = total - pageSize * (current - 1);
+
+        if (restSize <= 0) {
+          return [];
+        }
+
+        const size = restSize > pageSize ? pageSize : restSize;
+        const data = [];
+
+        for (let i = 0; i < size; i++) {
+          data.push(
+            `${i + pageSize * (current - 1) + 1} ${Math.random().toString(16).substring(2)}`
+          );
+        }
+        return data;
+      }
+
+      // 处理滚动底部加载
+      async function load() {
+        await waitTime();
+
+        const isSuccess = Math.random() > 0.2; // 标识请求是否成功
+        if (isSuccess) {
+          const data = getData();
+          const fragment = document.createDocumentFragment();
+
+          data.forEach((item) => {
+            const li = document.createElement('li');
+            li.setAttribute('class', 'list-group-item');
+            li.innerHTML = item;
+            fragment.append(li);
+          });
+          current += 1;
+          document.getElementById('wrapper').append(fragment);
+          return Promise.resolve({ data });
+        }
+
+        return Promise.reject();
+      }
+    </script>
+  </body>
 </html>

@@ -110,5 +110,5 @@ export function throttle(fn: (...args: any[]) => void, wait = 300) {
         fn.call(context, cacheArgs);
       }, wait - diffTime);
     }
-  }
+  };
 }

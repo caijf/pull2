@@ -1,0 +1,8 @@
+dist
+node_modules
+dist-examples
+bak
+package.json
+package-lock.json
+*.lock
+*.log

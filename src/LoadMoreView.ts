@@ -1,4 +1,3 @@
-
 import View from './View';
 import './LoadMoreView.less';
 import { isWindow } from './util';
@@ -32,13 +31,13 @@ export type Options = {
   scrollView?: HTMLElement | Window;
   text?: Partial<typeof defaultText>;
   dom?: Partial<typeof defaultDom>;
-}
+};
 
 const prefixCls = 'pull2-load-more';
 
 class LoadMoreView extends View {
   state: State;
-  options: { text: typeof defaultText, dom: typeof defaultDom; scrollView: HTMLElement | Window; };
+  options: { text: typeof defaultText; dom: typeof defaultDom; scrollView: HTMLElement | Window };
   tplMarkText: string;
 
   constructor(options?: Options) {
@@ -66,7 +65,9 @@ class LoadMoreView extends View {
   }
 
   private __getWrapper(wrapper: Window | HTMLElement) {
-    return isWindow(wrapper) || wrapper === document.documentElement ? document.body : (wrapper as HTMLElement);
+    return isWindow(wrapper) || wrapper === document.documentElement
+      ? document.body
+      : (wrapper as HTMLElement);
   }
 
   private render() {
