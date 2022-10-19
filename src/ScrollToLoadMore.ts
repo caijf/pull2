@@ -124,7 +124,7 @@ class ScrollToLoadMore<T = any> {
           // 触发更新内容高度，滚动容器高度。
           // 可以由外部触发。比如外部下拉刷新或者内容增删改，需要重新更新内容高度。
           if (autoCheckOnContentUpdate) {
-            this.scroll();
+            this.checkLoad();
           }
         }
         return res;

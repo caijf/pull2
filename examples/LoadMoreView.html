@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>滚动加载</title>
-  </head>
 
-  <body>
-    <div class="btns">
-      <button>default</button>
-      <button>loading</button>
-      <button>failed</button>
-      <button>done</button>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>滚动加载</title>
+</head>
 
-    <script type="module">
-      import LoadMoreView from '../src/LoadMoreView.ts';
+<body>
+  <div class="btns">
+    <button>default</button>
+    <button>loading</button>
+    <button>failed</button>
+    <button>done</button>
+  </div>
 
-      const loadMoreView = new LoadMoreView();
+  <script type="module">
+    import LoadMoreView from '../src/LoadMoreView.ts';
 
-      document.querySelector('.btns').addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.nodeName === 'BUTTON') {
-          loadMoreView.setState(target.innerText);
-        }
-      });
-    </script>
-  </body>
+    const loadMoreView = new LoadMoreView();
+
+    document.querySelector('.btns').addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.nodeName === 'BUTTON') {
+        loadMoreView.setState(target.innerText);
+      }
+    });
+  </script>
+</body>
+
 </html>

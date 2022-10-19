@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <title>PullToRefresh - basic</title>
-  </head>
 
-  <body>
-    <ul class="list-group" id="wrapper">
-      <li class="list-group-item">1</li>
-      <li class="list-group-item">2</li>
-      <li class="list-group-item">3</li>
-    </ul>
-    <script type="module">
-      import PullToRefresh from '../src/PullToRefresh.ts';
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet" />
+  <title>PullToRefresh - basic</title>
+</head>
 
-      new PullToRefresh({
-        onRefresh: refresh
+<body>
+  <ul class="list-group" id="wrapper">
+    <li class="list-group-item">1</li>
+    <li class="list-group-item">2</li>
+    <li class="list-group-item">3</li>
+  </ul>
+  <script type="module">
+    import { PullToRefresh } from '../src';
+
+    new PullToRefresh({
+      onRefresh: refresh
+    });
+
+    // 延迟执行
+    async function waitTime(time = 1000) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, time);
       });
+    }
 
-      // 延迟执行
-      async function waitTime(time = 1000) {
-        return new Promise((resolve) => {
-          setTimeout(resolve, time);
-        });
-      }
+    // 处理下拉刷新成功
+    async function refresh() {
+      await waitTime();
 
-      // 处理下拉刷新成功
-      async function refresh() {
-        await waitTime();
-
-        if (Math.random() > 0.2) {
-          const randomLen = Math.round(Math.random() * 30) + 10;
-          let html = '';
-          for (let i = 0; i < randomLen; i++) {
-            html += `<li class="list-group-item">${i + 1} ${Math.random()
-              .toString(16)
-              .substring(2)}</li>`;
-          }
-          document.getElementById('wrapper').innerHTML = html;
-          return Promise.resolve();
+      if (Math.random() > 0.2) {
+        const randomLen = Math.round(Math.random() * 30) + 10;
+        let html = '';
+        for (let i = 0; i < randomLen; i++) {
+          html += `<li class="list-group-item">${i + 1} ${Math.random()
+            .toString(16)
+            .substring(2)}</li>`;
         }
-
-        return Promise.reject();
+        document.getElementById('wrapper').innerHTML = html;
+        return Promise.resolve();
       }
-    </script>
-  </body>
+
+      return Promise.reject();
+    }
+  </script>
+</body>
+
 </html>

@@ -1,7 +1,7 @@
 {
   "name": "pull2",
   "version": "0.0.0",
-  "description": "下拉刷新、滚动底部加载组件。支持原生 js amd cjs es6 等应用场景，自定义文本和 dom 。",
+  "description": "提供了下拉刷新、滚动底部加载组件。原生 js 开发，不依赖任何框架，也可以集成到任何框架。",
   "main": "dist/pull2.cjs.js",
   "module": "dist/pull2.esm.js",
   "unpkg": "dist/pull2.umd.min.js",
@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "start": "parcel examples/index.html --dist-dir examples-dist",
+    "test": "jest",
     "build": "rm -rf dist && npm run build:module && npm run build:umd && npm run build:types",
     "build:module": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "build:umd": "rollup --config rollup.umd.config.ts --configPlugin @rollup/plugin-typescript",
