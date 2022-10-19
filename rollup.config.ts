@@ -12,7 +12,7 @@ export const commonConfig = {
   plugins: [
     resolve(),
     commonjs(),
-    typescript(),
+    typescript({ include: ['src/**/*'] }),
     postcss({
       inject: true
     })

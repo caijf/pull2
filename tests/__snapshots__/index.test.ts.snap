@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PullToRefresh destroy & resume 1`] = `"<div class="pull2-to-refresh pull2-to-refresh-default" style="height: 0px; overflow: hidden;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span>下拉刷新</div>"`;
+
+exports[`PullToRefresh destroy & resume 2`] = `""`;
+
+exports[`PullToRefresh destroy & resume 3`] = `"<div class="pull2-to-refresh pull2-to-refresh-loading" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle pull2-icon-spin"></span></span>刷新中...</div>"`;
+
+exports[`PullToRefresh destroy & resume 4`] = `"<div class="pull2-to-refresh pull2-to-refresh-success" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-check"></span></span>刷新成功</div>"`;
+
+exports[`PullToRefresh render default 1`] = `"<div class="pull2-to-refresh pull2-to-refresh-default" style="height: 0px; overflow: hidden;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span>下拉刷新</div>"`;
+
+exports[`PullToRefresh render default 2`] = `"<div class="pull2-to-refresh pull2-to-refresh-drop" style="height: 0px; overflow: hidden;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span>释放刷新</div>"`;
+
+exports[`PullToRefresh render default 3`] = `"<div class="pull2-to-refresh pull2-to-refresh-loading" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle pull2-icon-spin"></span></span>刷新中...</div>"`;
+
+exports[`PullToRefresh render default 4`] = `"<div class="pull2-to-refresh pull2-to-refresh-failed" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-x"></span></span>刷新失败</div>"`;
+
+exports[`PullToRefresh render default 5`] = `"<div class="pull2-to-refresh pull2-to-refresh-success" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-check"></span></span>刷新成功</div>"`;
+
+exports[`PullToRefresh render define 1`] = `"<div class="pull2-to-refresh pull2-to-refresh-default" style="height: 0px; overflow: hidden;"><div>默认</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render define 2`] = `"<div class="pull2-to-refresh pull2-to-refresh-drop" style="height: 0px; overflow: hidden;"><div>拖动</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render define 3`] = `"<div class="pull2-to-refresh pull2-to-refresh-loading" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><div>加载</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render define 4`] = `"<div class="pull2-to-refresh pull2-to-refresh-failed" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><div>失败</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render define 5`] = `"<div class="pull2-to-refresh pull2-to-refresh-success" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><div>成功</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render update 1`] = `"<div class="pull2-to-refresh pull2-to-refresh-default" style="height: 0px; overflow: hidden;"><span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span>下拉刷新</div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render update 2`] = `"<div class="pull2-to-refresh pull2-to-refresh-default" style="height: 0px; overflow: hidden;"><div>默认</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render update 3`] = `"<div class="pull2-to-refresh pull2-to-refresh-drop" style="height: 0px; overflow: hidden;"><div>拖动</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render update 4`] = `"<div class="pull2-to-refresh pull2-to-refresh-loading" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><div>加载</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render update 5`] = `"<div class="pull2-to-refresh pull2-to-refresh-failed" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><div>失败</div></div><div id="content">test</div>"`;
+
+exports[`PullToRefresh render update 6`] = `"<div class="pull2-to-refresh pull2-to-refresh-success" style="height: 40px; overflow: hidden; webkit-transition: all .3s; transition: all .3s;"><div>成功</div></div><div id="content">test</div>"`;
+
+exports[`ScrollToLoadMore destroy & resume 1`] = `"<div class="pull2-load-more pull2-load-more-default">上拉或点击加载更多</div>"`;
+
+exports[`ScrollToLoadMore destroy & resume 2`] = `""`;
+
+exports[`ScrollToLoadMore destroy & resume 3`] = `"<div class="pull2-load-more pull2-load-more-loading">正在加载</div>"`;
+
+exports[`ScrollToLoadMore destroy & resume 4`] = `"<div class="pull2-load-more pull2-load-more-default">上拉或点击加载更多</div>"`;
+
+exports[`ScrollToLoadMore render default 1`] = `"<div class="pull2-load-more pull2-load-more-default">上拉或点击加载更多</div>"`;
+
+exports[`ScrollToLoadMore render default 2`] = `"<div class="pull2-load-more pull2-load-more-loading">正在加载</div>"`;
+
+exports[`ScrollToLoadMore render default 3`] = `"<div class="pull2-load-more pull2-load-more-failed">加载失败，点击重试</div>"`;
+
+exports[`ScrollToLoadMore render default 4`] = `"<div class="pull2-load-more pull2-load-more-done">已全部加载</div>"`;
+
+exports[`ScrollToLoadMore render define 1`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-default"><div>默认</div></div>"`;
+
+exports[`ScrollToLoadMore render define 2`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-loading"><div>加载</div></div>"`;
+
+exports[`ScrollToLoadMore render define 3`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-failed"><div>失败</div></div>"`;
+
+exports[`ScrollToLoadMore render define 4`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-done"><div>完成</div></div>"`;
+
+exports[`ScrollToLoadMore render update 1`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-default">上拉或点击加载更多</div>"`;
+
+exports[`ScrollToLoadMore render update 2`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-default"><div>默认</div></div>"`;
+
+exports[`ScrollToLoadMore render update 3`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-loading"><div>加载</div></div>"`;
+
+exports[`ScrollToLoadMore render update 4`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-failed"><div>失败</div></div>"`;
+
+exports[`ScrollToLoadMore render update 5`] = `"<div id="content">test</div><div class="pull2-load-more pull2-load-more-done"><div>完成</div></div>"`;

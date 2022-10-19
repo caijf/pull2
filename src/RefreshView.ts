@@ -1,6 +1,6 @@
 import View from './View';
 import './RefreshView.less';
-import { isWindow } from './util';
+import { hasOwnProperty, isWindow } from './util';
 
 // 内部状态
 export enum State {
@@ -106,6 +106,8 @@ class RefreshView extends View {
       }
     };
 
+    this.setState(this.state, true);
+
     if (changedWrapper) {
       this.render();
     }
@@ -116,20 +118,22 @@ class RefreshView extends View {
     return dom[state] ? dom[state].replace(this.tplMarkText, text[state]) : '';
   }
 
-  setState(state: State) {
-    if (this.state === state) {
+  setState(state: State, force = false) {
+    if (this.state === state && !force) {
       return;
     }
 
-    const htmlStr = this.getHtml(state);
-
-    if (!htmlStr) {
+    if (!hasOwnProperty(this.options.dom, state)) {
       throw 'RefreshView 不支持 ' + state + ' 状态';
     }
 
-    this.removeClass(`${prefixCls}-${this.state}`);
-    this.state = state;
-    this.addClass(`${prefixCls}-${this.state}`);
+    if (this.state !== state) {
+      this.removeClass(`${prefixCls}-${this.state}`);
+      this.state = state;
+      this.addClass(`${prefixCls}-${this.state}`);
+    }
+
+    const htmlStr = this.getHtml(state);
     this.html(htmlStr);
   }
 }

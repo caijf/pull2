@@ -267,7 +267,7 @@ class PullToRefresh {
   }
 
   // 更新配置
-  updateOptions(options: Options) {
+  updateOptions(options: Partial<Options>) {
     let changedScrollView = false;
 
     if (options?.scrollView && options.scrollView !== this.options.scrollView) {
