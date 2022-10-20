@@ -6,7 +6,10 @@
     "start": "parcel ./index.html --open"
   },
   "dependencies": {
-    "parcel": "^2.7.0",
     "pull2": "^0.0.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-less": "2.7.0",
+    "parcel": "^2.7.0"
   }
 }
