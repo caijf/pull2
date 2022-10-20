@@ -13,9 +13,9 @@
 
 > 你也可以将项目下载到本地，安装依赖后，执行 `yarn start` 查看开发示例。
 
-- [下拉刷新](https://githubbox.com/caijf/pull2/tree/main/examples?file=/PullToRefresh.html)
-- [滚动底部加载](https://githubbox.com/caijf/pull2/tree/main/examples?file=/ScrollToLoadMore.html)
-- [下拉刷新 + 滚动底部加载](https://githubbox.com/caijf/pull2/tree/main/examples?file=/compose.html)
+- [下拉刷新](https://githubbox.com/caijf/pull2/tree/main/examples/native)
+- [滚动底部加载](https://githubbox.com/caijf/pull2/tree/main/examples/native)
+- [下拉刷新 + 滚动底部加载](https://githubbox.com/caijf/pull2/tree/main/examples/native)
 
 ## 安装
 
@@ -98,7 +98,7 @@ import { ScrollToLoadMore } from 'pull2';
 // 实例配置项
 const scrollToLoadMoreInstance = new ScrollToLoadMore(options: {
   onScrollLower: () => Promise<any>; // 必填。滚动底部触发方法。
-  isNoMore?: (res: T) => boolean; // 每次加载成功后触发该，判断是否没有更多了（加载完成）。
+  isNoMore?: (res: T) => boolean; // 每次加载成功后触发该，判断是否没有更多了（加载完成）。返回 true 表示没有更多了，显示加载完成。
   scrollView?: HTMLElement; // 滚动容器 dom 。默认 document.documentElement
   threshold?: number; // 滚动距离底部多少触发。默认 100 。
   autoCheckOnContentUpdate?: boolean; // 加载成功后是否自动判断满足触发加载更多条件。默认 true 。
@@ -119,11 +119,11 @@ const scrollToLoadMoreInstance = new ScrollToLoadMore(options: {
 });
 
 // 实例方法
-pullToRefreshInstance.triggerLoad(); // 手动触发加载方法，即 onScrollLower。
-pullToRefreshInstance.checkLoad(); // 检测当前滚动条位置是否满足触发加载方法条件，如果满足立即调用加载方法。
-pullToRefreshInstance.reset(); // 重置视图到默认状态，不会触发加载方法。例如下拉刷新后，需要重置底部加载更多为默认状态。
-pullToRefreshInstance.lock(); // 锁定，滚动操作不会触发加载方法。但还可以通过 triggerLoad 触发加载方法。
-pullToRefreshInstance.unlock(); // 解除锁定。
-pullToRefreshInstance.destroy(); // 销毁，删除 dom，滚动操作不会触发加载方法，也无法通过 triggerLoad 触发。
-pullToRefreshInstance.resume(); // 销毁之后，如果执行该方法可恢复dom 和滚动操作可触发加载方法。
+scrollToLoadMoreInstance.triggerLoad(); // 手动触发加载方法，即 onScrollLower。
+scrollToLoadMoreInstance.checkLoad(); // 检测当前滚动条位置是否满足触发加载方法条件，如果满足立即调用加载方法。
+scrollToLoadMoreInstance.reset(); // 重置视图到默认状态，不会触发加载方法。例如下拉刷新后，需要重置底部加载更多为默认状态。
+scrollToLoadMoreInstance.lock(); // 锁定，滚动操作不会触发加载方法。但还可以通过 triggerLoad 触发加载方法。
+scrollToLoadMoreInstance.unlock(); // 解除锁定。
+scrollToLoadMoreInstance.destroy(); // 销毁，删除 dom，滚动操作不会触发加载方法，也无法通过 triggerLoad 触发。
+scrollToLoadMoreInstance.resume(); // 销毁之后，如果执行该方法可恢复dom 和滚动操作可触发加载方法。
 ```

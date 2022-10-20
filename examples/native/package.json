@@ -1,0 +1,12 @@
+{
+  "name": "pull2-native",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "parcel ./index.html"
+  },
+  "dependencies": {
+    "parcel": "^2.7.0",
+    "pull2": "^0.0.1"
+  }
+}

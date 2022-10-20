@@ -6,40 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet" />
-  <title>PullToRefresh & ScrollToLoadMore</title>
+  <title>ScrollToLoadMore - reset</title>
 </head>
 
 <body>
+  <button id="reset-btn">重置</button>
   <ul class="list-group" id="wrapper"></ul>
   <script type="module">
-    import { PullToRefresh, ScrollToLoadMore } from '..';
-
-    const pullToRefreshInstance = new PullToRefresh({
-      onRefresh: () => {
-        scrollToloadMoreInstance.lock();
-        current = 1;
-        return refresh().then(() => {
-          scrollToloadMoreInstance.reset();
-          scrollToloadMoreInstance.unlock();
-          scrollToloadMoreInstance.checkLoad();
-        });
-      }
-    });
+    import { ScrollToLoadMore } from 'pull2';
 
     const scrollToloadMoreInstance = new ScrollToLoadMore({
-      onScrollLower: () => {
-        pullToRefreshInstance.lock();
-
-        return load().finally(() => {
-          pullToRefreshInstance.unlock();
-        });
-      },
+      onScrollLower: load,
       isNoMore: (res) => {
         return res.data.length < 10;
       }
     });
 
     scrollToloadMoreInstance.triggerLoad();
+
+    // 延迟执行
+    async function waitTime(time = 1000) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, time);
+      });
+    }
 
     let current = 1;
     const pageSize = 10;
@@ -61,25 +51,6 @@
         );
       }
       return data;
-    }
-
-    // 处理下拉刷新成功
-    async function refresh() {
-      await waitTime();
-
-      if (Math.random() > 0.2) {
-        let html = '';
-        for (let i = 0; i < 10; i++) {
-          html += `<li class="list-group-item">${i + 1} ${Math.random()
-            .toString(16)
-            .substring(2)}</li>`;
-        }
-        current += 1;
-        document.getElementById('wrapper').innerHTML = html;
-        return Promise.resolve();
-      }
-
-      return Promise.reject();
     }
 
     // 处理滚动底部加载
@@ -105,12 +76,12 @@
       return Promise.reject();
     }
 
-    // 延迟执行
-    async function waitTime(time = 1000) {
-      return new Promise((resolve) => {
-        setTimeout(resolve, time);
-      });
-    }
+    document.querySelector('#reset-btn').addEventListener('click', () => {
+      current = 1;
+      document.querySelector('#wrapper').innerHTML = '';
+      scrollToloadMoreInstance.reset();
+      scrollToloadMoreInstance.triggerLoad();
+    });
   </script>
 </body>
 

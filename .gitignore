@@ -6,5 +6,4 @@ yarn.lock
 .parcel-cache
 dist
 types
-bak
 examples-dist
