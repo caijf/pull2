@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "parcel ./index.html"
+    "start": "parcel ./index.html --open"
   },
   "dependencies": {
     "parcel": "^2.7.0",

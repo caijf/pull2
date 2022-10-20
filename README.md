@@ -59,7 +59,7 @@ import { PullToRefresh } from 'pull2';
 
 // 实例配置项
 const pullToRefreshInstance = new PullToRefresh(options: {
-  onRefresh: () => Promise<any>; // 必填。下拉刷新触发方法。
+  onRefresh: () => Promise<any>; // 必填。下拉刷新触发方法， resolve-刷新成功 reject-刷新失败。
   scrollView?: HTMLElement; // 滚动容器 dom 。默认 document.documentElement
   distance?: number; // 下拉距离多少触发刷新。默认 60 。
   height?: number; // 下拉刷新视图的高度（刷新中、刷新完成的高度，回弹动画需要）。默认 40 。
@@ -83,7 +83,7 @@ const pullToRefreshInstance = new PullToRefresh(options: {
 });
 
 // 实例方法
-pullToRefreshInstance.triggerRefresh(); // 手动触发下拉刷新。
+pullToRefreshInstance.triggerRefresh(); // 手动触发下拉刷新， resolve-加载成功恢复默认状态 reject-加载失败。
 pullToRefreshInstance.lock(); // 锁定，无法触发下拉操作。但还可以通过 triggerRefresh 触发下拉刷新。
 pullToRefreshInstance.unlock(); // 解除锁定。
 pullToRefreshInstance.destroy(); // 销毁，删除 dom，无法触发下拉操作，也无法通过 triggerRefresh 触发下拉刷新。
