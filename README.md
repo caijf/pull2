@@ -1,5 +1,7 @@
 # pull2
 
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/pull2.svg)
+
 提供了 **下拉刷新** 和 **滚动底部加载** 两个组件。
 
 ## 特性
@@ -131,3 +133,6 @@ scrollToLoadMoreInstance.unlock(); // 解除锁定。
 scrollToLoadMoreInstance.destroy(); // 销毁，删除 dom，滚动操作不会触发加载方法，也无法通过 triggerLoad 触发。
 scrollToLoadMoreInstance.resume(); // 销毁之后，如果执行该方法可恢复dom 和滚动操作可触发加载方法。
 ```
+
+[npm]: https://img.shields.io/npm/v/pull2.svg
+[npm-url]: https://npmjs.com/package/pull2

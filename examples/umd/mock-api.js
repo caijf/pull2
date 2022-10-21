@@ -3,7 +3,7 @@
 
 // 延迟执行
 function waitTime(time) {
-  time = time || 1000000;
+  time = time || 1000;
   return new Promise(function (resolve) {
     setTimeout(resolve, time);
   });
