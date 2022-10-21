@@ -64,9 +64,9 @@ class View {
     }
   }
 
-  updateTransition(enabled = false) {
-    const transValue = enabled ? 'all .3s' : '';
-    this.setStyle({ webkitTransition: transValue, transition: transValue });
+  updateTransition(enabled = false, propName = 'all') {
+    const transValue = enabled ? `${propName} .3s` : '';
+    this.setStyle({ '-webkit-transition': transValue, transition: transValue });
   }
 
   html(htmlStr: string) {
@@ -88,7 +88,7 @@ class View {
 
     clearTimeout(this.transitionTimer);
 
-    this.updateTransition(true);
+    this.updateTransition(true, 'height');
     reflow(this.el);
     this.setHeight(num);
     this.transitionTimer = setTimeout(() => {

@@ -13,16 +13,11 @@ export enum State {
 
 // 默认dom
 const defaultDom = {
-  [State.Default]:
-    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span><%=text%>',
-  [State.Drop]:
-    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle"></span></span><%=text%>',
-  [State.Loading]:
-    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-circle pull2-icon-spin"></span></span><%=text%>',
-  [State.Success]:
-    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-check"></span></span><%=text%>',
-  [State.Failed]:
-    '<span class="pull2-to-refresh-icon"><span class="pull2-icon pull2-icon-x"></span></span><%=text%>'
+  [State.Default]: '<span class="pull2-icon pull2-icon-circle"></span><%=text%>',
+  [State.Drop]: '<span class="pull2-icon pull2-icon-circle"></span><%=text%>',
+  [State.Loading]: '<span class="pull2-icon pull2-icon-circle pull2-icon-spin"></span><%=text%>',
+  [State.Success]: '<span class="pull2-icon pull2-icon-check"></span><%=text%>',
+  [State.Failed]: '<span class="pull2-icon pull2-icon-x"></span><%=text%>'
 };
 
 // 默认文本
