@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet" />
+  <title>PullToRefresh - fixed</title>
+  <style>
+    .main {
+      width: 100%;
+      height: 300px;
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="background: red; color: white">
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+  </div>
+  <div class="main" id="main">
+    <ul class="list-group" id="wrapper">
+      <li class="list-group-item">1</li>
+      <li class="list-group-item">2</li>
+      <li class="list-group-item">3</li>
+    </ul>
+  </div>
+  <div style="background: blue; color: white">
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+  </div>
+  <script type="module">
+    import { PullToRefresh } from '../../src';
+    import { getPageDataApi } from './mock-api.ts';
+
+    new PullToRefresh({
+      scrollView: document.getElementById('main'),
+      onRefresh: refresh
+    });
+
+    // 处理下拉刷新成功
+    async function refresh() {
+      const { data } = await getPageDataApi();
+      let html = '';
+      data.forEach(item => {
+        html += `<li class="list-group-item">${item.id} ${item.name} ${item.age}</li>`
+      });
+      document.getElementById('wrapper').innerHTML = html;
+    }
+  </script>
+</body>
+
+</html>

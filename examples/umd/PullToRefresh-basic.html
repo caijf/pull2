@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <title>PullToRefresh - basic</title>
+</head>
+
+<body>
+  <ul class="list-group" id="wrapper">
+    <li class="list-group-item">1</li>
+    <li class="list-group-item">2</li>
+    <li class="list-group-item">3</li>
+  </ul>
+  <script src="https://unpkg.com/core-js@2/client/core.min.js"></script>
+  <script src="https://unpkg.com/mockjs@1/dist/mock-min.js"></script>
+  <script src="https://unpkg.com/pull2/dist/pull2.min.js"></script>
+  <script src="./mock-api.js"></script>
+  <script>
+    new pull2.PullToRefresh({
+      onRefresh: refresh
+    });
+
+    // 处理下拉刷新成功
+    function refresh() {
+      if (Math.random() > 0.2) {
+        return getPageDataApi().then(function (res) {
+          var html = '';
+          res.data.forEach(function (item) {
+            html += '<li class="list-group-item">' + item.id + ' ' + item.name + '</li>';
+          });
+          document.getElementById('wrapper').innerHTML = html;
+        });
+      }
+
+      return Promise.reject();
+    }
+  </script>
+</body>
+
+</html>

@@ -4,14 +4,14 @@
   "description": "提供了下拉刷新、滚动底部加载组件。原生 js 开发，不依赖任何框架，也可以集成到任何框架。",
   "main": "dist/pull2.cjs.js",
   "module": "dist/pull2.esm.js",
-  "unpkg": "dist/pull2.umd.min.js",
+  "unpkg": "dist/pull2.min.js",
   "types": "types/index.d.ts",
   "files": [
     "dist",
     "types"
   ],
   "scripts": {
-    "start": "parcel examples/local/index.html --dist-dir examples-dist --open",
+    "start": "parcel examples/dev/index.html --dist-dir examples-dist --open",
     "test": "jest",
     "build": "rm -rf dist && npm run build:module && npm run build:umd && npm run build:types",
     "build:module": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
@@ -67,9 +67,11 @@
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^9.0.1",
     "@types/jest": "^29.2.0",
+    "@types/mockjs": "^1.0.7",
     "@types/node": "^18.11.0",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
+    "autoprefixer": "^10.4.12",
     "babel-jest": "^29.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.25.0",
@@ -77,6 +79,7 @@
     "jest-environment-jsdom": "^29.2.0",
     "less": "^4.1.3",
     "lint-staged": "^13.0.3",
+    "mockjs": "^1.1.0",
     "parcel": "^2.7.0",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
@@ -92,9 +95,17 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
     "stylelint-no-unsupported-browser-features": "^6.0.1",
     "typescript": "^4.8.4",
+    "util-helpers": "^4.12.9",
     "yorkie": "^2.0.0"
   },
-  "dependencies": {
-    "tslib": "^2.4.0"
+  "browserslist": {
+    "development": [
+      "last 1 version"
+    ],
+    "production": [
+      "last 1 version",
+      "> 1%",
+      "ie 9"
+    ]
   }
 }

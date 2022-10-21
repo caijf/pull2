@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" rel="stylesheet" />
+  <title>ScrollToLoadMore - fixed</title>
+  <style>
+    .main {
+      width: 100%;
+      height: 300px;
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="background: red; color: white">
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+    <div>header some thing</div>
+  </div>
+  <div class="main" id="main">
+    <ul class="list-group" id="wrapper"></ul>
+  </div>
+  <div style="background: blue; color: white">
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+    <div>footer some thing</div>
+  </div>
+  <script type="module">
+    import { ScrollToLoadMore } from '../../src';
+    import { getPageDataApi } from './mock-api.ts';
+
+    let current = 1; // 当前页码
+
+    const scrollToloadMoreInstance = new ScrollToLoadMore({
+      scrollView: document.getElementById('main'),
+      onScrollLower: load,
+      isNoMore: (res) => {
+        return res.data.length < 10;
+      }
+    });
+
+    scrollToloadMoreInstance.checkLoad();
+
+    // 处理滚动底部加载
+    async function load() {
+      const res = await getPageDataApi(current);
+      const fragment = document.createDocumentFragment();
+
+      res.data.forEach((item) => {
+        const li = document.createElement('li');
+        li.setAttribute('class', 'list-group-item');
+        li.innerHTML = `${item.id} ${item.name} ${item.age}`;
+        fragment.append(li);
+      });
+      document.getElementById('wrapper').append(fragment);
+      current += 1;
+      return res;
+    }
+  </script>
+</body>
+
+</html>

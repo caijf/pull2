@@ -7,15 +7,19 @@
 - 原生 js 开发，不依赖任何框架，也可以集成到任何框架
 - 导出 `umd`、`cjs`、 `es` 模块，适用多种应用场景
 - 支持自定义文本和 dom
+- 适配 PC 和移动端
+- 兼容 IE9+ 和现代浏览器
 - 使用 TypeScript 开发，提供完整的类型定义文件
 
 ## 在线示例
 
 > 你也可以将项目下载到本地，安装依赖后，执行 `yarn start` 查看开发示例。
 
-- [下拉刷新](https://githubbox.com/caijf/pull2/tree/main/examples/native)
-- [滚动底部加载](https://githubbox.com/caijf/pull2/tree/main/examples/native)
-- [下拉刷新 + 滚动底部加载](https://githubbox.com/caijf/pull2/tree/main/examples/native)
+[点击查看在线示例](https://githubbox.com/caijf/pull2/tree/main/examples/umd)
+
+- 下拉刷新
+- 滚动底部加载
+- 下拉刷新 + 滚动底部加载
 
 ## 安装
 
@@ -43,12 +47,12 @@ import { PullToRefresh, ScrollToLoadMore } from 'pull2';
 
 如果你的项目使用的是原生方式开发，可以在浏览器中使用 script 标签直接引入文件，并使用全局变量 pull2 。
 
-npm 包的 dist 目录下提供了 UMD 包 pull2.umd.js 以及 pull2.umd.min.js。你也可以通过 [UNPKG](https://unpkg.com/pull2/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/pull2@latest/dist/pull2.umd.min.js)<sup>注意版本</sup>。
-
 ```javascript
 // pull2.PullToRefresh
 // pull2.ScrollToLoadMore
 ```
+
+npm 包的 dist 目录下提供了 UMD 包 pull2.js 以及 pull2.min.js。你也可以通过 [UNPKG](https://unpkg.com/pull2/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/pull2@latest/dist/pull2.min.js)<sup>注意版本</sup>。
 
 ## API
 

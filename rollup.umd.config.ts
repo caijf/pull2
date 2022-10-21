@@ -8,13 +8,13 @@ const config: RollupOptions = {
   output: [
     {
       format: 'umd',
-      file: `${outputFilePrefix}.umd.js`,
+      file: `${outputFilePrefix}.js`,
       name: pkgName,
       sourcemap: true
     },
     {
       format: 'umd',
-      file: `${outputFilePrefix}.umd.min.js`,
+      file: `${outputFilePrefix}.min.js`,
       name: pkgName,
       sourcemap: true,
       plugins: [terser()]

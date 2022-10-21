@@ -2,6 +2,7 @@ import type { RollupOptions } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
+import autoprefixer from 'autoprefixer';
 import postcss from 'rollup-plugin-postcss';
 
 export const outputDir = 'dist';
@@ -14,7 +15,8 @@ export const commonConfig = {
     commonjs(),
     typescript({ include: ['src/**/*'] }),
     postcss({
-      inject: true
+      inject: true,
+      plugins: [autoprefixer]
     })
   ]
 };
