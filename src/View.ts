@@ -66,7 +66,7 @@ class View {
 
   updateTransition(enabled = false, propName = 'all') {
     const transValue = enabled ? `${propName} .3s` : '';
-    this.setStyle({ '-webkit-transition': transValue, transition: transValue });
+    this.setStyle({ transition: transValue });
   }
 
   html(htmlStr: string) {
