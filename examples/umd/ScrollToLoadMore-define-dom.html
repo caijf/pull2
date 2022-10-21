@@ -11,12 +11,15 @@
 
 <body>
   <ul class="list-group" id="wrapper"></ul>
-  <script type="module">
-    import { ScrollToLoadMore } from 'pull2';
-
-    const scrollToloadMoreInstance = new ScrollToLoadMore({
+  <script src="https://unpkg.com/core-js@2/client/core.min.js"></script>
+  <script src="https://unpkg.com/mockjs@1/dist/mock-min.js"></script>
+  <script src="https://unpkg.com/pull2/dist/pull2.min.js"></script>
+  <script src="./mock-api.js"></script>
+  <script>
+    var current = 1; // 当前页码
+    var scrollToloadMoreInstance = new pull2.ScrollToLoadMore({
       onScrollLower: load,
-      isNoMore: (res) => {
+      isNoMore: function (res) {
         return res.data.length < 10;
       },
       dom: {
@@ -27,58 +30,23 @@
       }
     });
 
-    scrollToloadMoreInstance.triggerLoad();
-
-    // 延迟执行
-    async function waitTime(time = 1000) {
-      return new Promise((resolve) => {
-        setTimeout(resolve, time);
-      });
-    }
-
-    let current = 1;
-    const pageSize = 10;
-    const total = Math.ceil(Math.random() * 50) + 20;
-
-    function getData() {
-      const restSize = total - pageSize * (current - 1);
-
-      if (restSize <= 0) {
-        return [];
-      }
-
-      const size = restSize > pageSize ? pageSize : restSize;
-      const data = [];
-
-      for (let i = 0; i < size; i++) {
-        data.push(
-          `${i + pageSize * (current - 1) + 1} ${Math.random().toString(16).substring(2)}`
-        );
-      }
-      return data;
-    }
+    scrollToloadMoreInstance.checkLoad();
 
     // 处理滚动底部加载
-    async function load() {
-      await waitTime();
+    function load() {
+      return getPageDataApi(current).then(function (res) {
+        var fragment = document.createDocumentFragment();
 
-      const isSuccess = Math.random() > 0.2; // 标识请求是否成功
-      if (isSuccess) {
-        const data = getData();
-        const fragment = document.createDocumentFragment();
-
-        data.forEach((item) => {
-          const li = document.createElement('li');
+        res.data.forEach(function (item) {
+          var li = document.createElement('li');
           li.setAttribute('class', 'list-group-item');
-          li.innerHTML = item;
+          li.innerHTML = `${item.id} ${item.name} ${item.age}`;
           fragment.append(li);
         });
-        current += 1;
         document.getElementById('wrapper').append(fragment);
-        return Promise.resolve({ data });
-      }
-
-      return Promise.reject();
+        current += 1;
+        return res;
+      });
     }
   </script>
 </body>

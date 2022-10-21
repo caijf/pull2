@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./PullToRefresh-define-dom.less" />
+  <link rel="stylesheet" href="./PullToRefresh-define-dom.css" />
   <title>PullToRefresh - define dom</title>
 </head>
 
@@ -39,17 +39,13 @@
 
     // 处理下拉刷新成功
     function refresh() {
-      if (Math.random() > 0.2) {
-        return getPageDataApi().then(function (res) {
-          var html = '';
-          res.data.forEach(function (item) {
-            html += '<li class="list-group-item">' + item.id + ' ' + item.name + '</li>';
-          });
-          document.getElementById('wrapper').innerHTML = html;
+      return getPageDataApi().then(function (res) {
+        var html = '';
+        res.data.forEach(function (item) {
+          html += '<li class="list-group-item">' + item.id + ' ' + item.name + '</li>';
         });
-      }
-
-      return Promise.reject();
+        document.getElementById('wrapper').innerHTML = html;
+      });
     }
   </script>
 </body>

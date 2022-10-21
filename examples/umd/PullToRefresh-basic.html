@@ -26,17 +26,13 @@
 
     // 处理下拉刷新成功
     function refresh() {
-      if (Math.random() > 0.2) {
-        return getPageDataApi().then(function (res) {
-          var html = '';
-          res.data.forEach(function (item) {
-            html += '<li class="list-group-item">' + item.id + ' ' + item.name + '</li>';
-          });
-          document.getElementById('wrapper').innerHTML = html;
+      return getPageDataApi().then(function (res) {
+        var html = '';
+        res.data.forEach(function (item) {
+          html += '<li class="list-group-item">' + item.id + ' ' + item.name + '</li>';
         });
-      }
-
-      return Promise.reject();
+        document.getElementById('wrapper').innerHTML = html;
+      });
     }
   </script>
 </body>

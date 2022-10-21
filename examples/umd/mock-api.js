@@ -34,7 +34,7 @@ function getPageData(current, pageSize) {
 
   // mock 数据模型
   var mockModel = {
-    'id|+1': 1,
+    'id|+1': realPageSize * (realCurrent - 1) + 1,
     'age|10-50': 10,
     name: '@cname'
   };
