@@ -8,7 +8,7 @@ type Options = {
   onRefresh: () => Promise<any>; // 下拉刷新回调方法
   distance?: number; // 下拉距离多少触发刷新
   height?: number; // 下拉刷新视图的高度（刷新中、刷新完成的高度）
-  unmovableStayTime?: number; // 不动的停留时间
+  unmovableStayTime?: number; // 下拉后保持不动停留多少时间后执行end，为了处理一些意外操作，如移动端移出屏幕
   completionStayTime?: number; // 完成状态停留时间
 } & RefreshViewOptions;
 
@@ -82,9 +82,9 @@ class PullToRefresh {
 
     const { scrollView } = this.options;
     scrollView.addEventListener(Events.start, this.handler?.start, { passive: false });
-    scrollView.addEventListener(Events.move, this.handler?.move, { passive: false });
-    scrollView.addEventListener(Events.end, this.handler?.end, { passive: false });
-    scrollView.addEventListener(Events.cancel, this.handler?.end, { passive: false });
+    document.addEventListener(Events.move, this.handler?.move, { passive: false });
+    document.addEventListener(Events.end, this.handler?.end, { passive: false });
+    document.addEventListener(Events.cancel, this.handler?.end, { passive: false });
   }
 
   // 解绑事件
@@ -93,9 +93,9 @@ class PullToRefresh {
 
     const { scrollView } = this.options;
     scrollView.removeEventListener(Events.start, this.handler?.start);
-    scrollView.removeEventListener(Events.move, this.handler?.move);
-    scrollView.removeEventListener(Events.end, this.handler?.end);
-    scrollView.removeEventListener(Events.cancel, this.handler?.end);
+    document.removeEventListener(Events.move, this.handler?.move);
+    document.removeEventListener(Events.end, this.handler?.end);
+    document.removeEventListener(Events.cancel, this.handler?.end);
   }
 
   // 开始触摸

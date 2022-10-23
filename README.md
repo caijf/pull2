@@ -69,7 +69,7 @@ const pullToRefreshInstance = new PullToRefresh(options: {
   scrollView?: HTMLElement; // 滚动容器 dom 。默认 document.documentElement
   distance?: number; // 下拉距离多少触发刷新。默认 60 。
   height?: number; // 下拉刷新视图的高度（刷新中、刷新完成的高度，回弹动画需要）。默认 40 。
-  unmovableStayTime?: number; // 下拉后保持不动停留多少时间后执行end，为了处理一些意外操作，单位毫秒。默认 3000 。
+  unmovableStayTime?: number; // 下拉后保持不动停留多少时间后执行end，为了处理一些意外操作，如移动端端移出屏幕，单位毫秒。默认 3000 。
   completionStayTime?: number; // 完成状态停留时间，单位毫秒。默认 500 。
   updateOptions?: Partial<Options>; // 更新配置项。
   text?: { // 自定义文本
