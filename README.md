@@ -17,7 +17,7 @@
 
 > 你也可以将项目下载到本地，安装依赖后，执行 `yarn start` 查看开发示例。
 
-[点击查看在线示例](https://githubbox.com/caijf/pull2/tree/main/examples/umd)
+[点击查看在线示例](https://githubbox.com/caijf/pull2/tree/main/examples/module)
 
 - 下拉刷新
 - 滚动底部加载
