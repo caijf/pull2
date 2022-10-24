@@ -6,11 +6,11 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "pull2": "^0.0.1"
+    "mockjs": "^1.1.0",
+    "pull2": "^1.0.2",
+    "util-helpers": "^4.12.9"
   },
   "devDependencies": {
-    "mockjs": "^1.1.0",
-    "parcel": "^2.7.0",
-    "util-helpers": "^4.12.9"
+    "parcel": "^2.7.0"
   }
 }
