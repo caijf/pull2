@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "mockjs": "^1.1.0",
-    "pull2": "^1.0.2",
+    "pull2": "^1.0.3",
     "util-helpers": "^4.12.9"
   },
   "devDependencies": {
