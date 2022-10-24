@@ -18,11 +18,10 @@ export const Events = {
 export function getScrollTop(el: HTMLElement | Window) {
   let top = 0;
 
-  if (el === document.body || el === document.documentElement || el === window) {
+  if (el === document.body || el === document.documentElement) {
     top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
   } else {
-    // @ts-ignore
-    top = el.scrollTop;
+    top = 'scrollTop' in el ? el.scrollTop : el.scrollY;
   }
 
   return top;

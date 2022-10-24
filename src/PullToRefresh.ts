@@ -10,6 +10,7 @@ type Options = {
   height?: number; // 下拉刷新视图的高度（刷新中、刷新完成的高度）
   unmovableStayTime?: number; // 下拉后保持不动停留多少时间后执行end，为了处理一些意外操作，如移动端移出屏幕
   completionStayTime?: number; // 完成状态停留时间
+  isPullDown?: (diffY: number) => boolean; // 根据 y 轴偏移值判断是否为下拉，便于配合横向滑动操作，例如左滑删除，可以设置为 diffY => diffY > 0 ，这样横向滑动时不会触发下拉。
 } & RefreshViewOptions;
 
 const TransitionDurantion = 300; // 动画过渡持续时间
@@ -40,6 +41,7 @@ class PullToRefresh {
       unmovableStayTime: 3000,
       completionStayTime: 500,
       scrollView: document.documentElement,
+      isPullDown: (diffY) => diffY >= 0,
       ...options
     };
 
@@ -140,11 +142,10 @@ class PullToRefresh {
       }
 
       // 横向移动或往上滑动，不触发下拉刷新
-      if (diffY <= 0) {
+      if (!this.options.isPullDown(diffY)) {
         this.isTouch = false;
         return;
       }
-
       this.isMove = true;
     }
 

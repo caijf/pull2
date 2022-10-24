@@ -20,7 +20,8 @@
     import { getPageDataApi } from './mock-api.ts';
 
     new PullToRefresh({
-      onRefresh: refresh
+      onRefresh: refresh,
+      // isPullDown: diffY => diffY > 0
     });
 
     // 处理下拉刷新成功
