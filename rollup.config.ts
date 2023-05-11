@@ -13,7 +13,9 @@ export const commonConfig = {
   plugins: [
     resolve(),
     commonjs(),
-    typescript({ include: ['src/**/*'] }),
+    typescript({
+      tsconfig: './tsconfig.build.json'
+    }),
     postcss({
       inject: true,
       plugins: [autoprefixer]

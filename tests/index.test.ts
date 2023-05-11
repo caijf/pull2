@@ -26,24 +26,23 @@ describe('PullToRefresh', () => {
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(0);
 
-    pullToRefreshInstance.triggerRefresh();
+    const p = pullToRefreshInstance.triggerRefresh();
 
     // loding
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // failed
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
 
-    pullToRefreshInstance.triggerRefresh();
-    await fn();
+    await pullToRefreshInstance.triggerRefresh();
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('render define', async () => {
@@ -71,24 +70,23 @@ describe('PullToRefresh', () => {
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(0);
 
-    pullToRefreshInstance.triggerRefresh();
+    const p = pullToRefreshInstance.triggerRefresh();
 
     // loding
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // failed
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
 
-    pullToRefreshInstance.triggerRefresh();
-    await fn();
+    await pullToRefreshInstance.triggerRefresh();
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('render update', async () => {
@@ -122,24 +120,23 @@ describe('PullToRefresh', () => {
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(0);
 
-    pullToRefreshInstance.triggerRefresh();
+    const p = pullToRefreshInstance.triggerRefresh();
 
     // loding
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // failed
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
 
-    pullToRefreshInstance.triggerRefresh();
-    await fn();
+    await pullToRefreshInstance.triggerRefresh();
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('destroy & resume', async () => {
@@ -162,17 +159,17 @@ describe('PullToRefresh', () => {
 
     // resume
     pullToRefreshInstance.resume();
-    pullToRefreshInstance.triggerRefresh();
+    const p = pullToRefreshInstance.triggerRefresh();
 
     // loading
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -190,26 +187,27 @@ describe('ScrollToLoadMore', () => {
 
     // 模拟点击
     // @ts-ignore
-    scrollToLoadMoreInstance.view.el.click();
+    // scrollToLoadMoreInstance.view.el.click();
+    const p = scrollToLoadMoreInstance.triggerLoad();
 
     // loding
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // failed
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     // 模拟点击
     // @ts-ignore
-    scrollToLoadMoreInstance.view.el.click();
-    await fn();
+    // scrollToLoadMoreInstance.view.el.click();
+    await scrollToLoadMoreInstance.triggerLoad();
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('render define', async () => {
@@ -232,26 +230,27 @@ describe('ScrollToLoadMore', () => {
 
     // 模拟点击
     // @ts-ignore
-    scrollToLoadMoreInstance.view.el.click();
+    // scrollToLoadMoreInstance.view.el.click();
+    const p = scrollToLoadMoreInstance.triggerLoad();
 
     // loding
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // failed
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     // 模拟点击
     // @ts-ignore
-    scrollToLoadMoreInstance.view.el.click();
-    await fn();
+    // scrollToLoadMoreInstance.view.el.click();
+    await scrollToLoadMoreInstance.triggerLoad();
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('render update', async () => {
@@ -280,26 +279,27 @@ describe('ScrollToLoadMore', () => {
 
     // 模拟点击
     // @ts-ignore
-    scrollToLoadMoreInstance.view.el.click();
+    // scrollToLoadMoreInstance.view.el.click();
+    const p = scrollToLoadMoreInstance.triggerLoad();
 
     // loding
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // failed
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     // 模拟点击
     // @ts-ignore
-    scrollToLoadMoreInstance.view.el.click();
-    await fn();
+    // scrollToLoadMoreInstance.view.el.click();
+    await scrollToLoadMoreInstance.triggerLoad();
 
     // success
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('destroy & resume', async () => {
@@ -322,16 +322,16 @@ describe('ScrollToLoadMore', () => {
 
     // resume
     scrollToLoadMoreInstance.resume();
-    scrollToLoadMoreInstance.triggerLoad();
+    const p = scrollToLoadMoreInstance.triggerLoad();
 
     // loading
     expect(document.body.innerHTML).toMatchSnapshot();
     expect(fn).toHaveBeenCalledTimes(1);
 
-    await fn();
+    await p;
 
     // default
     expect(document.body.innerHTML).toMatchSnapshot();
-    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 });
