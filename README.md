@@ -69,7 +69,6 @@ const pullToRefreshInstance = new PullToRefresh(options: {
   unmovableStayTime?: number; // 下拉后保持不动停留多少时间后执行end，为了处理一些意外操作，如移动端端移出屏幕，单位毫秒。默认 3000 。
   completionStayTime?: number; // 完成状态停留时间，单位毫秒。默认 500 。
   isPullDown?: (diffY: number) => boolean; // 根据 y 轴偏移值判断是否为下拉，便于配合横向滑动操作，例如左滑删除，可以设置为 diffY => diffY > 0 ，这样横向滑动时不会触发下拉。默认 diffY => diffY >= 0 。
-  updateOptions?: Partial<Options>; // 更新配置项。
   text?: { // 自定义文本
     default?: string; // 下拉刷新
     drop?: string; // 释放刷新
@@ -87,6 +86,7 @@ const pullToRefreshInstance = new PullToRefresh(options: {
 });
 
 // 实例方法
+pullToRefreshInstance.updateOptions(options: Partial<Options>); // 更新配置项。
 pullToRefreshInstance.triggerRefresh(); // 手动触发下拉刷新， resolve-加载成功恢复默认状态 reject-加载失败。
 pullToRefreshInstance.lock(); // 锁定，无法触发下拉操作。但还可以通过 triggerRefresh 触发下拉刷新。
 pullToRefreshInstance.unlock(); // 解除锁定。
@@ -107,7 +107,6 @@ const scrollToLoadMoreInstance = new ScrollToLoadMore(options: {
   threshold?: number; // 滚动距离底部多少触发。默认 100 。
   autoCheckOnContentUpdate?: boolean; // 加载成功后是否自动判断满足触发加载更多条件。默认 true 。
   throttleWaitTime?: number; // 滚动事件方法节流时间，单位毫秒。默认 50 。
-  updateOptions?: Partial<Options>; // 更新配置项。
   text?: { // 自定义文本
     default?: string; // 上拉或点击加载更多
     loading?: string; // 正在加载
@@ -123,6 +122,7 @@ const scrollToLoadMoreInstance = new ScrollToLoadMore(options: {
 });
 
 // 实例方法
+scrollToLoadMoreInstance.updateOptions(options: Partial<Options>); // 更新配置项。
 scrollToLoadMoreInstance.triggerLoad(); // 手动触发加载方法，即 onScrollLower。
 scrollToLoadMoreInstance.checkLoad(); // 检测当前滚动条位置是否满足触发加载方法条件，如果满足立即调用加载方法。
 scrollToLoadMoreInstance.reset(); // 重置视图到默认状态，不会触发加载方法。例如下拉刷新后，需要重置底部加载更多为默认状态。
