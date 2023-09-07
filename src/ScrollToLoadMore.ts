@@ -170,7 +170,7 @@ class ScrollToLoadMore<T = any> {
     }
   }
 
-  // 内部锁定，锁定后将不再触发下拉刷新
+  // 内部锁定，锁定后将不再触发滚动底部加载
   private internalLock() {
     this.isLock = true;
   }

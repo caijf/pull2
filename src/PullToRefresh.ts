@@ -32,7 +32,7 @@ class PullToRefresh {
   private completionStayTimer: any;
   private __timerFixSlideOutScreen: any;
   private view!: RefreshView;
-  private handler: { start: any; move: any; end: any } | null;
+  private handler: { start: any; move: any; end: any };
 
   constructor(options: Options) {
     this.options = {
@@ -83,10 +83,7 @@ class PullToRefresh {
     if (this.isUnmouted) return;
 
     const { scrollView } = this.options;
-    scrollView.addEventListener(Events.start, this.handler?.start, { passive: false });
-    document.addEventListener(Events.move, this.handler?.move, { passive: false });
-    document.addEventListener(Events.end, this.handler?.end, { passive: false });
-    document.addEventListener(Events.cancel, this.handler?.end, { passive: false });
+    scrollView.addEventListener(Events.start, this.handler.start, { passive: false });
   }
 
   // 解绑事件
@@ -94,10 +91,20 @@ class PullToRefresh {
     if (this.isUnmouted) return;
 
     const { scrollView } = this.options;
-    scrollView.removeEventListener(Events.start, this.handler?.start);
-    document.removeEventListener(Events.move, this.handler?.move);
-    document.removeEventListener(Events.end, this.handler?.end);
-    document.removeEventListener(Events.cancel, this.handler?.end);
+    scrollView.removeEventListener(Events.start, this.handler.start);
+    this.unbindDocumentEvent();
+  }
+
+  private bindDocumentEvent() {
+    document.addEventListener(Events.move, this.handler.move, { passive: false });
+    document.addEventListener(Events.end, this.handler.end, { passive: false });
+    document.addEventListener(Events.cancel, this.handler.end, { passive: false });
+  }
+
+  private unbindDocumentEvent() {
+    document.removeEventListener(Events.move, this.handler.move);
+    document.removeEventListener(Events.end, this.handler.end);
+    document.removeEventListener(Events.cancel, this.handler.end);
   }
 
   // 开始触摸
@@ -112,6 +119,8 @@ class PullToRefresh {
     if (scrollTop > 0) {
       return;
     }
+
+    this.bindDocumentEvent();
 
     this.isTouch = true;
     this.isMove = false;
@@ -181,6 +190,7 @@ class PullToRefresh {
   // 触摸结束
   private async fnTouchend() {
     clearTimeout(this.__timerFixSlideOutScreen);
+    this.unbindDocumentEvent();
 
     if (!this.isTouch || !this.isMove) {
       this.isTouch = false;
