@@ -1,6 +1,6 @@
 {
   "name": "pull2",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "提供了下拉刷新、滚动底部加载组件。原生 js 开发，不依赖任何框架，也可以集成到任何框架。",
   "main": "dist/pull2.cjs.js",
   "module": "dist/pull2.esm.js",
