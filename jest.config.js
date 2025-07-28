@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 const { createDefaultPreset } = require('ts-jest');
 const tsJestTransformCfg = createDefaultPreset().transform;
