@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { PullToRefresh, ScrollToLoadMore } from '..';
+import { PullToRefresh, ScrollToLoadMore } from '../src';
 
 beforeEach(() => {
   // 每个测试单元开始前清空dom

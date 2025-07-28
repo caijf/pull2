@@ -1,12 +1,12 @@
 import Mockjs from 'mockjs';
-import { waitTime } from 'util-helpers';
+import { sleep } from 'ut2';
 
 // 随机数据总数量
 const total = Math.ceil(Math.random() * 50) + 20;
 
 // 获取分页列表数据接口
 export async function getPageDataApi(current = 1, pageSize = 10) {
-  await waitTime();
+  await sleep();
 
   if (Math.random() < 0.1) {
     return Promise.reject();

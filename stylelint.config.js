@@ -2,8 +2,6 @@ module.exports = {
   extends: [
     'stylelint-config-standard',
     'stylelint-config-css-modules',
-    'stylelint-config-rational-order',
-    'stylelint-config-prettier',
     'stylelint-no-unsupported-browser-features'
   ],
   plugins: ['stylelint-declaration-block-no-ignored-properties'],
@@ -18,6 +16,7 @@ module.exports = {
     'number-max-precision': 8,
     'alpha-value-notation': 'number',
     'color-function-notation': 'legacy',
+    'color-function-alias-notation': null,
     'selector-class-pattern': null,
     'selector-id-pattern': null,
     'font-family-no-missing-generic-family-keyword': null,
